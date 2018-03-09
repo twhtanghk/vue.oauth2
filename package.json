@@ -1,0 +1,38 @@
+{
+  "name": "vue.oauth2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "vue": "^2.5.13"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-beta.5",
+    "@vue/cli-service": "latest",
+    "bootstrap-vue": "^2.0.0-rc.1",
+    "coffee-loader": "^0.9.0",
+    "coffeescript": "^2.2.2",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.7",
+    "vue-template-compiler": "^2.5.13"
+  },
+  "babel": {
+    "presets": [
+      "@vue/app"
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
