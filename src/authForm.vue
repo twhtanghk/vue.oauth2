@@ -10,11 +10,11 @@ Vue.use require('bootstrap-vue').default
 module.exports =
   props: [
     'eventBus'
-    'user'
-    'error'
     'oauth2'
   ]
   data: ->
+    token: null
+    error: null
     show: false
     src: null
   methods:
@@ -34,25 +34,29 @@ module.exports =
         error: search.get('error')
       if data.access_token? or data.error?
         window.parent.postMessage {type: 'oauth2', data: data}, location.origin
-    login: ->
+    getToken: ->
       document
         .getElementById 'authForm'
         .src = @authUrl()
       @show = true
     logout: ->
-      @user.token = null
+      @token = null
   created: ->
     @eventBus
-      .$on 'login', =>
-        @login()
-      .$on 'logout', =>
+      .$on 'oauth2.getToken', =>
+        @getToken()
+      .$on 'oauth2.logout', =>
         @logout()   
     @postParent()
     window.addEventListener 'message', (event) =>
       {type, data} = event.data
       if type == 'oauth2'
-        @error.msg = data.error
-        @user.token = data.access_token
+        @error = data.error
+        @token = data.access_token
+        if @error?
+          @eventBus.$emit 'oauth2.error', @error
+        if @token?
+          @eventBus.$emit 'oauth2.token', @token
         @show = false
 </script>
 

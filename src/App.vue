@@ -1,9 +1,9 @@
 <template>
   <div>
-    <authForm :eventBus='eventBus' :user='user' :error='error' :oauth2='oauth2' />
+    <authForm :eventBus='eventBus' :oauth2='oauth2' />
     <b-navbar>
-      <b-button v-if='user.token == null' @click='login()'>login {{error.msg}}</b-button>
-      <b-button v-if='user.token != null' @click='logout()'>logout {{user.token}}</b-button>
+      <b-button v-if='token == null' @click='getToken()'>login {{error}}</b-button>
+      <b-button v-if='token != null' @click='logout()'>logout {{token}}</b-button>
     </b-navbar>
 </div>
 </template>
@@ -18,19 +18,26 @@ eventBus = require('./eventBus').default
 
 module.exports =
   data: ->
+    token: null
+    error: null
     eventBus: eventBus
-    user:
-      token: null
-    error:
-      msg: ''
     oauth2:
       url: 'https://app.ogcio.gov.hk/auth/oauth2/authorize/'
       client: '3TJ1GWZKUgXADslxXcdWQeipIvniayX0C7AKXNjG'
       scope: 'User'
       response_type: 'token'
   methods:
-    login: ->
-      eventBus.$emit 'login'
+    getToken: ->
+      @eventBus.$emit 'oauth2.getToken'
     logout: ->
-      eventBus.$emit 'logout'
+      @token = null
+      @eventBus.$emit 'oauth2.logout'
+  created: ->
+    @eventBus
+      .$on 'oauth2.token', (token) =>
+        @token = token
+        @error = null
+      .$on 'oauth2.error', (error) =>
+        @token = null
+        @error = error
 </script>
