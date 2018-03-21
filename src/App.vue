@@ -9,8 +9,6 @@
 </template>
 
 <script lang='coffee'>
-require './app.scss'
-
 Vue = require('vue').default
 Vue.use require('bootstrap-vue').default
 Vue.use require('./plugin').default

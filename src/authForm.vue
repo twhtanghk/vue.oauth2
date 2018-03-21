@@ -61,6 +61,8 @@ module.exports =
 </script>
 
 <style lang='scss'>
+@import '~bootstrap/scss/bootstrap.scss';
+
 .modal-body {
   padding: 0.3rem;
 
