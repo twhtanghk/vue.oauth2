@@ -5,7 +5,7 @@
       <b-button v-if='token == null' @click='getToken()'>login {{error}}</b-button>
       <b-button v-if='token != null' @click='logout()'>logout {{token}}</b-button>
     </b-navbar>
-</div>
+  </div>
 </template>
 
 <script lang='coffee'>

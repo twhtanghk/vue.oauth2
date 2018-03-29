@@ -16,7 +16,6 @@ module.exports =
     token: null
     error: null
     show: false
-    src: null
   methods:
     authUrl: ->
       URL = require 'url'
