@@ -34,6 +34,8 @@ module.exports =
       if data.access_token? or data.error?
         window.parent.postMessage {type: 'oauth2', data: data}, location.origin
     getToken: ->
+      if @token?
+        return @eventBus.$emit 'oauth2.token', @token
       document
         .getElementById 'authForm'
         .src = @authUrl()
