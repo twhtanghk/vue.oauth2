@@ -14,7 +14,7 @@ Vue.use require('bootstrap-vue').default
 Vue.use require('./plugin').default
 eventBus = require('./eventBus').default
 
-module.exports =
+export default
   data: ->
     token: null
     error: null

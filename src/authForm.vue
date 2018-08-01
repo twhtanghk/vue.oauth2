@@ -7,7 +7,8 @@
 <script lang='coffee'>
 Vue = require('vue').default
 Vue.use require('bootstrap-vue').default
-module.exports =
+
+export default
   props: [
     'eventBus'
     'oauth2'

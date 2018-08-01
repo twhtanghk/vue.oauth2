@@ -1,4 +1,4 @@
 <script lang='coffee'>
 Vue = require('vue').default
-module.exports = new Vue()
+export default new Vue()
 </script>
