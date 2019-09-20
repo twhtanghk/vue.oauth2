@@ -1,6 +1,6 @@
 <template>
   <b-modal size='lg' v-model='show' hide-header hide-footer>
-    <iframe id='authForm' />
+    <iframe :src='authUrl()' />
   </b-modal>
 </template>
 
@@ -37,9 +37,6 @@ export default
     getToken: ->
       if @token?
         return @eventBus.$emit 'oauth2.token', @token
-      document
-        .getElementById 'authForm'
-        .src = @authUrl()
       @show = true
     logout: ->
       @token = null
